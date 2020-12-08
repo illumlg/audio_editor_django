@@ -1,2 +1,2 @@
-sox=14.4.2+git20190427-2
+sox
 :repo:deb http://archive.ubuntu.com/ubuntu focal/universe
