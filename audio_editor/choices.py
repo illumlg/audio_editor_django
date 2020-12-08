@@ -4,8 +4,6 @@ FORMAT_CHOICES = (
     ('.aiff', 'aiff'),
     ('.au', 'au'),
     ('.avr', 'avr'),
-    ('.flac', 'flac'),
-    ('.ogg', 'ogg'),
     ('.snd', 'snd'),
     ('.wav', 'wav'),
 )

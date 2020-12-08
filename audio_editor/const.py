@@ -1,5 +1,5 @@
 DATABASE = 'sqlite3.db'
-VALID_FORMATS = ['.aif', '.aifc', '.aiff', '.au', '.avr', '.flac', '.ogg', '.snd', '.wav']
+VALID_FORMATS = ['.aif', '.aifc', '.aiff', '.au', '.avr', '.snd', '.wav']
 INPUT_DIRECTORY = 'input files/'
 OUTPUT_DIRECTORY = 'output files/'
 CONTENT_TYPE = ['audio']
