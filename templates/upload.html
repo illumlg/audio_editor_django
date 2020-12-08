@@ -1,0 +1,78 @@
+<form action="{% url "upload" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ message }}
+            <p>{{ form.non_field_errors }}</p>
+
+            <p>{{ form.audiofile.label_tag }} {{ form.audiofile.help_text }}</p>
+
+            <p>
+                {{ form.audiofile }}
+                {{ form.audiofile.errors }}
+            </p>
+            <p>
+                {{ form.convert.label_tag }}
+                {{ form.convert }}
+                {{ form.format.label_tag }}
+                {{ form.format }}<br>
+                {{ form.chorus.label_tag }}
+                {{ form.chorus }}
+                {{ form.voices.label_tag }}
+                {{ form.voices }}<br>
+                {{ form.trim.label_tag }}
+                {{ form.trim }}
+                {{ form.start_time.label_tag }}
+                {{ form.start_time }}
+                {{ form.end_time.label_tag }}
+                {{ form.end_time }}<br>
+                {{ form.treble.label_tag }}
+                {{ form.treble }}
+                {{ form.gain.label_tag }}
+                {{ form.gain }}<br>
+                {{ form.reverse.label_tag }}
+                {{ form.reverse }}<br>
+                {{ form.flanger.label_tag }}
+                {{ form.flanger }}
+                {{ form.preset.label_tag }}
+                {{ form.preset }}<br>
+                {{ form.tremolo.label_tag }}
+                {{ form.tremolo }}
+                {{ form.tremolo_speed.label_tag }}
+                {{ form.tremolo_speed }}
+                {{ form.depth.label_tag }}
+                {{ form.depth }}<br>
+                {{ form.volume.label_tag }}
+                {{ form.volume }}
+                {{ form.volume_value.label_tag }}
+                {{ form.volume_value }}<br>
+                {{ form.echo.label_tag }}
+                {{ form.echo }}
+                {{ form.gain_in.label_tag }}
+                {{ form.gain_in }}
+                {{ form.gain_out.label_tag }}
+                {{ form.gain_out }}<br>
+                {{ form.bass.label_tag }}
+                {{ form.bass }}
+                {{ form.gain_db.label_tag }}
+                {{ form.gain_db }}
+                {{ form.freq.label_tag }}
+                {{ form.freq }}
+                {{ form.slope.label_tag }}
+                {{ form.slope }}<br>
+                {{ form.speed.label_tag }}
+                {{ form.speed }}
+                {{ form.speed_value.label_tag }}
+                {{ form.speed_value }}<br>
+                {{ form.repeat.label_tag }}
+                {{ form.repeat }}
+                {{ form.count.label_tag }}
+                {{ form.count }}<br>
+                {{ form.fade.label_tag }}
+                {{ form.fade }}
+                {{ form.fade_start.label_tag }}
+                {{ form.fade_start }}
+                {{ form.fade_end.label_tag }}
+                {{ form.fade_end }}<br>
+            </p>
+
+            <p><input type="submit" value="Upload"/></p>
+        </form>
