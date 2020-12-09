@@ -26,7 +26,7 @@ SECRET_KEY = 'gom@^ixlqyibu+_jo652_@vg%*&k_m@3l1s5=rc$9n8agphki0'
 DEBUG = True
 
 ALLOWED_HOSTS = ['audio-editor-django.herokuapp.com', '127.0.0.1']
-
+DATA_UPLOAD_MAX_MEMORY_SIZE = None
 
 # Application definition
 
