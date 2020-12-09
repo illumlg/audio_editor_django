@@ -5,6 +5,7 @@ from typing import List, Callable, Tuple
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from audio_editor.audio_operations import convert, chorus, trim, treble, reverse, flanger, tremolo, volume, echo, bass, \
@@ -20,6 +21,7 @@ def index(request):
     return render(request, 'index.html')
 
 #@login_required(login_url='/accounts/login/?next=/upload')
+@csrf_exempt
 def upload(request):
     if request.method == 'POST':
         form = AudiofileForm(request.POST, request.FILES)
