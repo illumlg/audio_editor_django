@@ -1,6 +1,7 @@
 import datetime
 from typing import List, Callable, Tuple
 
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 
@@ -16,6 +17,7 @@ from audio_editor.utils import handle_file
 def index(request):
     return HttpResponse('Hello')
 
+@login_required(login_url='/accounts/login/?next=/upload')
 def upload(request):
     if request.method == 'POST':
         form = AudiofileForm(request.POST, request.FILES)
