@@ -19,7 +19,7 @@ from audio_editor.utils import handle_file
 def index(request):
     return render(request, 'index.html')
 
-@login_required(login_url='/accounts/login/?next=/upload')
+#@login_required(login_url='/accounts/login/?next=/upload')
 def upload(request):
     if request.method == 'POST':
         form = AudiofileForm(request.POST, request.FILES)
