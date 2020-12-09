@@ -24,6 +24,7 @@
                 {{ form.start_time }}
                 {{ form.end_time.label_tag }}
                 {{ form.end_time }}<br>
+                {{ form.trim.errors }}
                 {{ form.treble.label_tag }}
                 {{ form.treble }}
                 {{ form.gain.label_tag }}
@@ -76,3 +77,5 @@
 
             <p><input type="submit" value="Upload"/></p>
         </form>
+<p><a href="{% url 'logout' %}">Log Out</a></p>
+<p><a href="{% url 'admin:index' %}">Admin panel</a></p>

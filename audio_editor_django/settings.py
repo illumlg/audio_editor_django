@@ -25,7 +25,7 @@ SECRET_KEY = 'gom@^ixlqyibu+_jo652_@vg%*&k_m@3l1s5=rc$9n8agphki0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['audio-editor-django.herokuapp.com']
+ALLOWED_HOSTS = ['audio-editor-django.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -100,7 +100,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

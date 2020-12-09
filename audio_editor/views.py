@@ -1,4 +1,5 @@
 import datetime
+import os
 from typing import List, Callable, Tuple
 
 from django.contrib.auth.decorators import login_required
@@ -8,6 +9,7 @@ from django.shortcuts import render
 # Create your views here.
 from audio_editor.audio_operations import convert, chorus, trim, treble, reverse, flanger, tremolo, volume, echo, bass, \
     speed, repeat, fade
+from audio_editor.const import INPUT_DIRECTORY, MAX_CONTENT_SIZE
 from audio_editor.custom_response import ResponseThen
 from audio_editor.forms import AudiofileForm
 from audio_editor.models import Request
@@ -15,7 +17,7 @@ from audio_editor.utils import handle_file
 
 
 def index(request):
-    return HttpResponse('Hello')
+    return render(request, 'index.html')
 
 @login_required(login_url='/accounts/login/?next=/upload')
 def upload(request):
@@ -49,14 +51,21 @@ def upload(request):
                 ops.append((repeat, [int(form['count'].data)]))
             if form['fade'].data:
                 ops.append((fade, [float(form['fade_start'].data), float(form['fade_end'].data)]))
+            s = sum([os.path.getsize(INPUT_DIRECTORY + file)  for file in os.listdir(INPUT_DIRECTORY)])
+            if s > MAX_CONTENT_SIZE:
+                response = HttpResponse('Inner storage is full, try again later')
+                response.status_code=507
+                return response
             full_path_input, full_path_output = handle_file(request.FILES['audiofile'], ops)
             log = Request(date=datetime.datetime.now(),
                           name=request.method,
                           status='OK',
                           status_code=200,
                           description='success',
+                          user=request.user.get_username(),
                           params=str(ops))
             log.save()
+            print(len(os.listdir('input files'))-1)
             response = ResponseThen(open(full_path_output, 'rb'), content_type='audio/*', full_path_input=full_path_input, full_path_output=full_path_output)
             return response
     else:
