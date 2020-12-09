@@ -7,7 +7,7 @@ from audio_editor.const import MAX_CONTENT_SIZE
 
 
 class AudiofileForm(forms.Form):
-    audiofile = forms.FileField(label='Select a file', help_text='max 20 mb', allow_empty_file=False, validators=[FileExtensionValidator(allowed_extensions=['aif', 'aifc', 'aiff', 'au', 'avr', 'snd', 'wav'])])
+    audiofile = forms.FileField(label='Select a file(max 20 mb)', allow_empty_file=False, validators=[FileExtensionValidator(allowed_extensions=['aif', 'aifc', 'aiff', 'au', 'avr', 'snd', 'wav'])])
     convert = forms.BooleanField(label='convert', required=False)
     format = forms.ChoiceField(label='format', required=True, choices=FORMAT_CHOICES)
     chorus = forms.BooleanField(label='chorus', required=False)
