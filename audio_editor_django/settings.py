@@ -25,7 +25,7 @@ SECRET_KEY = 'gom@^ixlqyibu+_jo652_@vg%*&k_m@3l1s5=rc$9n8agphki0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['audio-editor-django.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = None
+DATA_UPLOAD_MAX_NUMBER_FIELDS = None
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

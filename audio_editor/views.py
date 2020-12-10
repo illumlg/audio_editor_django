@@ -7,9 +7,11 @@ from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
+
 from audio_editor.audio_operations import convert, chorus, trim, treble, reverse, flanger, tremolo, volume, echo, bass, \
     speed, repeat, fade
-from audio_editor.const import INPUT_DIRECTORY, MAX_CONTENT_SIZE
+from audio_editor.const import INPUT_DIRECTORY, MAX_CONTENT_SIZE, STORAGE_LIMIT
 from audio_editor.custom_response import ResponseThen
 from audio_editor.forms import AudiofileForm
 from audio_editor.models import Request
@@ -19,7 +21,8 @@ from audio_editor.utils import handle_file
 def index(request):
     return render(request, 'index.html')
 
-@login_required(login_url='/accounts/login/?next=/upload')
+#@login_required(login_url='/accounts/login/?next=/upload')
+@csrf_exempt
 def upload(request):
     if request.method == 'POST':
         form = AudiofileForm(request.POST, request.FILES)
@@ -52,7 +55,7 @@ def upload(request):
             if form['fade'].data:
                 ops.append((fade, [float(form['fade_start'].data), float(form['fade_end'].data)]))
             s = sum([os.path.getsize(INPUT_DIRECTORY + file)  for file in os.listdir(INPUT_DIRECTORY)])
-            if s > MAX_CONTENT_SIZE:
+            if s > STORAGE_LIMIT:
                 response = HttpResponse('Inner storage is full, try again later')
                 response.status_code=507
                 return response
@@ -66,7 +69,7 @@ def upload(request):
                           params=str(ops))
             log.save()
             print(len(os.listdir('input files'))-1)
-            response = ResponseThen(open(full_path_output, 'rb'), content_type='audio/*', full_path_input=full_path_input, full_path_output=full_path_output)
+            response = ResponseThen(open(full_path_output, 'rb'), content_type='audio/*', full_path_input=full_path_input, full_path_output=full_path_output, as_attachment=True)
             return response
     else:
         form = AudiofileForm()
