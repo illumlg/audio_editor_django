@@ -5,6 +5,7 @@ from typing import List, Callable, Tuple
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, FileResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt

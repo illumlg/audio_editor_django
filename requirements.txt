@@ -1,3 +1,4 @@
 django
 sox
 gunicorn
+django-crispy-forms
